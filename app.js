@@ -113,7 +113,7 @@ async function loadProducts() {
       price: 2450,
       category: 'IEM',
       image:
-        'https://gadgetnmusic.com/wp-content/uploads/2023/12/7HZ-x-Crinacle-Zero-2-Earphone-1.jpg',
+        'https://cdn.shopify.com/s/files/1/0040/7201/3924/files/DSC04715.jpg?v=1700823104',
       rating: { rate: 4.6 },
     },
 
