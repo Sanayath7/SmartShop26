@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartShop - Online Product Store</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+
+<body id="home" class="bg-gradient-to-br from-slate-100 via-white to-blue-100 text-gray-800">
+
+
+    <!-- Navbar -->
+  <nav class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-store text-3xl text-blue-600"></i>
+          <h1 class="text-2xl font-bold">SmartShop</h1>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+
+<a href="#home" onclick="scrollToSection(event,'home')" class="nav-link active">Home</a>
+<a href="#products" onclick="scrollToSection(event,'products')" class="nav-link">Products</a>
+<a href="#reviews" onclick="scrollToSection(event,'reviews')" class="nav-link">Reviews</a>
+<a href="#team" onclick="scrollToSection(event,'team')" class="nav-link">Our Team</a>
+<a href="#contact" onclick="scrollToSection(event,'contact')" class="nav-link">Contact</a>
+        </div>
+        <div class="flex items-center gap-5">
+          <div class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-2xl">
+            <span class="text-sm">Balance: <span id="balance-display" class="font-bold text-green-600">1000</span>
+              ৳</span>
+            <button onclick="addMoney()"
+              class="bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1.5 rounded-xl">+1000</button>
+          </div>
+          <button onclick="toggleCart()" class="relative">
+            <i class="fa-solid fa-cart-shopping text-2xl"></i>
+            <span id="cart-count"
+              class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Banner -->
+  <div id="banner" class="relative h-[420px] overflow-hidden bg-black">
+    <div id="slides" class="flex h-full w-full transition-transform duration-700"></div>
+    <button onclick="prevSlide()"
+      class="absolute left-6 top-1/2 -translate-y-1/2 bg-black/60 text-white p-4 rounded-full text-2xl">←</button>
+    <button onclick="nextSlide()"
+      class="absolute right-6 top-1/2 -translate-y-1/2 bg-black/60 text-white p-4 rounded-full text-2xl">→</button>
+    <div id="banner-dots" class="absolute bottom-6 left-1/2 flex gap-3"></div>
+  </div>
+
+  <!-- Search & Filter -->
+  <div class="max-w-7xl mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+      <input type="text" id="search-input" onkeyup="filterProducts()" placeholder="Search products..."
+        class="w-full md:w-96 px-5 py-3 border border-gray-300 rounded-2xl focus:outline-none focus:border-blue-500">
+      <div class="flex gap-2 flex-wrap" id="category-filters"></div>
+    </div>
+  </div>
+
+  <!-- Products -->
+<div id="products" class="max-w-7xl mx-auto px-6 py-16">
+<h2 class="text-4xl font-bold mb-3 text-center">
+  Trending Products
+</h2>
+
+<p class="text-gray-500 text-center mb-10">
+  Best gaming accessories and tech products at affordable prices
+</p>
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+  </div>
+
+  <!-- Reviews -->
+  <div id="reviews" class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-10">What Our Customers Say</h2>
+      <div id="review-slider" class="flex gap-6 overflow-x-auto pb-6 snap-x scrollbar-hide"></div>
+    </div>
+  </div>
+
+  <!-- Team Members -->
+  <div id="team" class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center mb-12">Meet Our Team</h2>
+      <div id="team-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    </div>
+  </div>
+
+
+  <div id="contact" class="py-16 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+
+    <h2 class="text-3xl font-bold text-center mb-10">
+      Contact Us
+    </h2>
+
+    <div class="bg-gray-100 rounded-3xl p-8 space-y-5">
+
+      <input type="text"
+        placeholder="Your Name"
+        class="w-full px-5 py-4 rounded-2xl border">
+
+      <input type="email"
+        placeholder="Your Email"
+        class="w-full px-5 py-4 rounded-2xl border">
+
+      <textarea
+        placeholder="Your Message"
+        class="w-full px-5 py-4 rounded-2xl border h-32"></textarea>
+
+      <button onclick="contactMessage()"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl">
+        Send Message
+      </button>
+
+    </div>
+  </div>
+</div>
+
+  
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-3 text-white mb-4">
+            <i class="fa-solid fa-store text-3xl text-blue-500"></i>
+            <h3 class="text-2xl font-bold">SmartShop</h3>
+          </div>
+          <p class="text-sm">Your trusted online store for quality products at best prices.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Home</a></li>
+            <li><a href="#" class="hover:text-white">Products</a></li>
+            <li><a href="#" class="hover:text-white">Reviews</a></li>
+            <li><a href="#" class="hover:text-white">Our Team</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Support</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white">Shipping Policy</a></li>
+            <li><a href="#" class="hover:text-white">Returns</a></li>
+            <li><a href="#" class="hover:text-white">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold text-white mb-4">Newsletter</h4>
+          <div class="mt-2">
+            <input type="email" placeholder="Your email"
+              class="w-full px-4 py-3 rounded-2xl bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500 text-sm">
+            <button class="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-2xl text-sm font-medium">
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm">
+        &copy;  All rights reserved. 
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar"
+    class="fixed top-0 right-0 h-full w-full md:w-96 bg-white shadow-2xl translate-x-full transition-transform duration-300 z-50 flex flex-col">
+    <!-- Cart content remains same -->
+    <div class="p-6 border-b flex justify-between items-center">
+      <div class="flex items-center gap-3">
+  <h2 class="text-2xl font-bold">Your Cart</h2>
+
+  <button onclick="clearCart()"
+    class="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-2 rounded-xl">
+    Remove All
+  </button>
+</div>
+      <button onclick="toggleCart()" class="text-3xl leading-none">×</button>
+    </div>
+    <div id="cart-items" class="flex-1 overflow-auto p-6 space-y-6"></div>
+    <div class="p-6 border-t">
+      <div class="space-y-3">
+        <div class="flex justify-between"><span>Subtotal</span><span id="subtotal">0 ৳</span></div>
+        <div class="flex justify-between">
+  <span>Delivery</span>
+  <span id="delivery-charge">0 ৳</span>
+</div>
+      </div>
+
+      <div class="mt-4">
+        <input id="coupon-input" type="text" placeholder="Coupon: SMART10" class="w-full px-4 py-3 border rounded-2xl">
+        <button onclick="applyCoupon()" class="mt-3 w-full bg-gray-800 text-white py-3 rounded-2xl">Apply
+          Coupon</button>
+      </div>
+
+      <div class="flex justify-between font-bold text-lg mt-6">
+        <span>Total</span>
+        <span id="final-total">0 ৳</span>
+      </div>
+
+      <button onclick="checkout()"
+        class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-2xl font-semibold">Checkout</button>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+
+</html>
