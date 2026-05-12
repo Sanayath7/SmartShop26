@@ -1,13 +1,12 @@
-// app.js
 let products = [];
 let cart = [];
 let currentBalance =
-  Number(localStorage.getItem('balance')) || 50000;let currentSlide = 0;
+  Number(localStorage.getItem('balance')) || 1000;let currentSlide = 0;
 let couponDiscount = 0;
 
 // banner er PICS
 const banners = [
-  'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1400',
+  'https://lavishta.com/wp-content/uploads/2026/02/web-banner-2.jpg.webp',
   'https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1400',
   'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1400',
   'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1400',
@@ -73,6 +72,20 @@ const teamMembers = [
 
 // Load Products
 async function loadProducts() {
+
+  
+  // Fetch API er jonno
+  try {
+    const response = await fetch('https://fakestoreapi.com/products');
+    const data = await response.json();
+
+    console.log('Fetched API Data:', data);
+
+  } catch (error) {
+    console.log('API Fetch Error:', error);
+  }
+  
+  // amr product
   products = [
     {
       id: 1,
@@ -406,6 +419,7 @@ function renderCart() {
   let total = subtotal + deliveryCharge - discount;
 
   if (cart.length === 0) {
+      couponDiscount = 0;
   container.innerHTML = `
     <div class="text-center text-gray-500 mt-10">
       Your cart is empty
@@ -644,7 +658,7 @@ function renderTeam() {
     .join('');
 }
 
-// Scroll Navigation (Fixed)
+// Scroll Navigation
 function scrollToSection(event, section) {
   event.preventDefault();
 
